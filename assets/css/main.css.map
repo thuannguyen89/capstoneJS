@@ -1,0 +1,14 @@
+{
+    "version": 3,
+    "mappings": "AGAA,WAAW;AACX,AAAA,CAAC,CAAC;EACE,MAAM,EAAE,CAAC;EACT,OAAO,EAAE,CAAC;EACV,UAAU,EAAE,UAAU;CACzB;;AAED,AAAA,IAAI,EAAE,IAAI,CAAC;EACP,WAAW,EAAE,kBAAkB;EAC/B,SAAS,EAAE,IAAI;EACf,WAAW,EAAE,GAAG;EAChB,WAAW,EAAE,GAAG;EAChB,KAAK,EFED,IAAI;EEDR,UAAU,EAAE,IAAI;EAChB,gBAAgB,EFVZ,IAAI;EEWR,MAAM,EAAE,CAAC;CACZ",
+    "sources": [
+        "../scss/main.scss",
+        "../scss/Helpers/_variables.scss",
+        "../scss/Helpers/_mixin.scss",
+        "../scss/Base/_reset.scss",
+        "../scss/Layouts/_header.scss",
+        "../scss/Layouts/_products.scss"
+    ],
+    "names": [],
+    "file": "main.css"
+}
