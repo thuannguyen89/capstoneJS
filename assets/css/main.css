@@ -16,4 +16,8 @@ html, body {
   background-color: #fff;
   margin: 0;
 }
+
+.invalid-input {
+  display: block;
+}
 /*# sourceMappingURL=main.css.map */
