@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài Tập Capstone JS</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+
+    <!-- Bootstrap4 CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+        integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="./../../assets/css/main.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+                <a class="navbar-brand" href="#">Capstone JS</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01"
+                    aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarColor01">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="./../../user/views/index.html">Trang Bán Hàng</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#">Trang Quản Trị</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+    </div>
+
+    <!-- Table -->
+    <div class="py-5 bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <button id="btnThemSP" class="btn btn-success" data-toggle="modal" data-target="#productModal">
+                        <i class="fa fa-plus mr-1"></i>
+                        Thêm SP Mới
+                    </button>
+                </div>
+                <div class="col-md-4">
+                    <div class="input-group mb-3">
+                        <input type="text" id="searchTenSP" class="form-control" placeholder="Nhập từ khóa" aria-label="Nhập từ khóa"
+                            aria-describedby="basic-addon2" />
+                        <div class="input-group-append">
+                            <span class="input-group-text" id="btnTimSP"><i class="fa fa-search"></i></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group row">
+                        <label for="selLoai" class="col-md-2 col-form-label">Lọc</label>
+                        <div class="col-md-8">
+                            <select class="custom-select" id="selLoai">
+                                <option selected="">Chọn thương hiệu</option>
+                                <option value="all">Tất cả</option>
+                                <option value="iphone">Iphone</option>
+                                <option value="samsung">Samsung</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group row">
+                        <label for="selGiaSP" class="col-md-6 col-form-label">Sắp xếp theo Giá</label>
+                        <div class="col-md-6">
+                            <select class="custom-select" id="selGiaSP">
+                                <option selected="">Chọn sắp xếp</option>
+                                <option value="tang">Tăng dần</option>
+                                <option value="giam">Giảm dần</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="page-header">
+                        <h1 id="tables">Danh sách SP</h1>
+                    </div>
+
+                    <div class="bs-component">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col">STT</th>
+                                    <th scope="col">Tên SP</th>
+                                    <th scope="col">Thương hiệu</th>
+                                    <th scope="col">Giá</th>
+                                    <th scope="col">Hình ảnh</th>
+                                    <th scope="col">Màn hình</th>
+                                    <th scope="col">Camera trước</th>
+                                    <th scope="col">Camera sau</th>
+                                    <th scope="col">Mô tả</th>
+                                    <th scope="col">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tblDanhSachSP">
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Product Modal -->
+        <div class="modal fade" id="productModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title">Thêm mới SP</h4>
+                        <button type="button" class="close" data-dismiss="modal">
+                            &times;
+                        </button>
+                    </div>
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>Id Sản Phẩm</label>
+                            <input id="idSP" class="form-control" placeholder="ID sản phẩm tự sinh" readonly />
+                            <div id="invalidIdSP" class="invalid-feedback invalid-input"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>Tên Sản Phẩm</label>
+                            <input type="text" id="tenSP" class="form-control" placeholder="Nhập vào tên sản phẩm" />
+                            <div id="invalidTenSP" class="invalid-feedback invalid-input"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="loaiSP">Thương hiệu</label>
+                            <select class="custom-select d-block w-100" id="loaiSP" required>
+                                <option value="">Chọn Thương hiệu</option>
+                                <option value="iphone">Iphone</option>
+                                <option value="samsung">Samsung</option>
+                            </select>
+                            <div id="invalidLoaiSP" class="invalid-feedback invalid-input"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>Giá</label>
+                            <input type="number" id="giaSP" class="form-control" placeholder="Nhập vào giá" />
+                            <div id="invalidGiaSP" class="invalid-feedback invalid-input"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>Hình Ảnh</label>
+                            <input type="text" id="hinhSP" class="form-control" placeholder="Nhập vào hình sản phẩm" />
+                            <div id="invalidHinhSP" class="invalid-feedback invalid-input"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>Màn Hình</label>
+                            <input type="text" id="manSP" class="form-control"
+                                placeholder="Nhập vào màn hình sản phẩm" />
+                            <div id="invalidManSP" class="invalid-feedback invalid-input"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>Camera Trước</label>
+                            <input id="cameraTruocSP" class="form-control"
+                                placeholder="Nhập vào Camera trước sản phẩm" />
+                            <div id="invalidCameraTruocSP" class="invalid-feedback invalid-input"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>Camera Sau</label>
+                            <input type="text" id="cameraSauSP" class="form-control"
+                                placeholder="Nhập vào Camera sau sản phẩm" />
+                            <div id="invalidCameraSauSP" class="invalid-feedback invalid-input"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="">Mô Tả</label>
+                            <textarea id="moTaSP" class="form-control" name="" rows="5"></textarea>
+                            <div id="invalidMoTaSP" class="invalid-feedback invalid-input"></div>
+                        </div>
+                    </div>
+                    <!-- Modal footer -->
+                    <div class="modal-footer"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <!-- Jquery Min JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer">
+    </script>
+
+    <!-- Bootstrap4 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous">
+    </script>
+
+    <!-- Axios JS -->
+    <script src="https://unpkg.com/axios@1.6.7/dist/axios.min.js"></script>
+
+    <!-- Custom JS -->
+    <script src="./../models/product.js"></script>
+    <script src="./../services/api.js"></script>
+    <script src="./../../assets/js/validations.js"></script>
+    <script src="./../controllers/index.js"></script>
+</body>
+
+</html>
