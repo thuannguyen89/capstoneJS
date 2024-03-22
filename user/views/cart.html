@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bài Tập Capstone JS</title>
 
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
     <!-- Bootstrap4 CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
         integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
@@ -26,10 +29,10 @@
 
                 <div class="collapse navbar-collapse" id="navbarColor01">
                     <ul class="navbar-nav mr-auto">
-                        <li class="nav-item active">
+                        <li class="nav-item">
                             <a class="nav-link" href="./index.html">Trang Bán Hàng</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item active">
                             <a class="nav-link" href="./cart.html">Trang Giỏ Hàng</a>
                         </li>
                         <li class="nav-item">
@@ -41,30 +44,44 @@
         </header>
     </div>
 
-    <div class="album py-5 bg-light">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="form-group row">
-                        <label for="selLoai" class="col-md-1 col-sm-4 col-form-label">Lọc</label>
-                        <div class="col-md-4">
-                          <select class="custom-select" id="selLoai">
-                            <option selected="">Chọn thương hiệu</option>
-                            <option value="all">Tất cả</option>
-                            <option value="iphone">Iphone</option>
-                            <option value="samsung">Samsung</option>             
-                          </select>
+    <section class="h-100 h-custom">
+        <div class="container py-5">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-12">
+                    <div class="card card-registration card-registration-2">
+                        <div class="card-body p-0">
+                            <div class="row g-0">
+                                <div class="col-lg-8">
+                                    <div class="p-5">
+                                        <div class="d-flex justify-content-between align-items-center mb-5">
+                                            <h1 class="fw-bold mb-0 text-black">Giỏ hàng</h1>
+                                            <h6 id="countItems" class="mb-0 text-muted"></h6>
+                                        </div>
+                                        <div id="divGioHang">
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 bg-grey">
+                                    <div class="p-5">
+                                        <h3 class="fw-bold mb-5 mt-2 pt-1">Summary</h3>
+                                        <hr class="my-4">
+                                        <div class="d-flex justify-content-between mb-5">
+                                            <h5 class="text-uppercase">Tổng tiền</h5>
+                                            <h5 id="totalPrices"></h5>
+                                        </div>
+
+                                        <button id="btnPlaceOrder" type="button" class="btn btn-primary btn-block btn-lg"
+                                            data-mdb-ripple-color="dark" disabled>Thanh Toán</button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                      </div>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="container">
-            <div class="row" id="gridDanhSachSP">
-
-            </div>
-        </div>
-    </div>
+    </section>
 
     <!-- Jquery Min JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
@@ -81,11 +98,9 @@
     <script src="https://unpkg.com/axios@1.6.7/dist/axios.min.js"></script>
 
     <!-- Custom JS -->
-    <script src="./../models/product.js"></script>
-    <script src="./../services/api.js"></script>
-    <script src="./../models/cart.js"></script>
     <script src="./../models/item.js"></script>
-    <script src="./../controllers/index.js"></script>
+    <script src="./../models/cart.js"></script>
+    <script src="./../controllers/cart.js"></script>
 </body>
 
 </html>

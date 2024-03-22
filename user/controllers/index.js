@@ -1,4 +1,24 @@
 const api = new Api();
+const cart = new Cart();
+
+// Lấy cart từ localStorage
+getLocalStorage();
+
+// Luu CART xuong localStorage
+function setLocalStorage(items) {
+    const arrString = JSON.stringify(items);
+    localStorage.setItem('CART', arrString);
+}
+
+// Lay CART tu localStorage
+function getLocalStorage() {
+    if (!localStorage.getItem('CART')) {
+        return;
+    }
+    const arrString = localStorage.getItem('CART');
+    const arrJson = JSON.parse(arrString);
+    cart.items = arrJson;
+}
 
 // Lấy element theo id
 function getEle(id) {
@@ -82,6 +102,54 @@ getEle("selLoai").onchange = function () {
 
         // Show list products is filtered.
         renderUI(listFilter);
+    }).catch(function (error) {
+        console.log(error);
+    });
+}
+
+
+/**
+ * Add to cart
+ */
+function addToCart(id) {
+    // Lay thong tin cua SP can add to cart
+    let promise = api.getProductById(id);
+    promise.then(function (response) {
+        const product = response.data;
+
+        if (product.id) {
+            /** Validate dối tượng item đã có trong cart hay chưa
+             * Có: chỉ update qty
+             * Chưa: Thêm mới item
+             */
+            let item = cart.findItemById(product.id);
+            if (item) {
+                // Cập nhật qty của item đã tồn tại
+                item.qty += 1;
+
+                // Update item đến cart
+                cart.updateItem(item);
+            } else {
+                // Tạo dối tượng item
+                item = new Item(product.id, product.name, product.price, product.img, 1);
+
+                // Thêm item đến cart
+                cart.addItem(item);
+            }
+
+            // Lưu localStorage
+            setLocalStorage(cart.items);
+
+            // Chuyển DSNV (JSON) thành chuổi
+            const arrString = JSON.stringify(cart.items);
+
+            // Lưu xuống localStorage
+            localStorage.setItem('CART', arrString);
+
+            alert("Thêm thành công sản phẩm vào giỏ hàng.");
+        } else {
+            alert("Không thêm được vào giỏ hàng vì không tìm thấy sản phẩm.");
+        }
     }).catch(function (error) {
         console.log(error);
     });
